@@ -72,3 +72,6 @@ class MyTest(unittest.TestCase):
     def test_validLink(self):
         self.assertTrue(Links.validLink("http://www.google.com"))
         self.assertFalse(Links.validLink("thisWillNotWork$$$%$%$%$"))
+        
+    def test_createLinkList(self):
+        self.assertEqual(Links.createLinkList("LinksSource.txt"), ['http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt', 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_a_v2.txt', 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_b_v2.txt', 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt', 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_d.txt'])
