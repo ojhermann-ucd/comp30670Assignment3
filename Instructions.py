@@ -42,25 +42,3 @@ class Instruction:
         self.y1 = int(self.start[1])
         self.x2 = int(self.end[0])
         self.y2 = int(self.end[1])
-
-
-thisList = ["switch", 1, 2, 3, 4]
-theInstruction = Instruction(thisList)
-
-print(theInstruction.instruction)
-print(theInstruction.command)
-print(theInstruction.start)
-print(theInstruction.end)
-print(theInstruction.x1)
-print(theInstruction.y1)
-print(theInstruction.x2)
-print(theInstruction.y2)
-
-"""
-#converts the Instruction into a form amenable to modifying the Grid
-def instructionForm(theList): #list input
-    command = theList[0]
-    commandStart = (int(theList[1]), int(theList[2]))
-    commandEnd = (int(theList[3]), int(theList[4]))
-    return [command, commandStart, commandEnd] #list output
-"""

@@ -13,29 +13,10 @@ def modificationEntry(theI, theBool): #Instruction and boolean inputs
     if theI.command == "switch":
         return not theBool
 
-def modificationGrid(theI, theG): #instuctions and grid
+def modificationGrid(theI, theG): #instructions and grid
     for x in range(theI.x1, theI.x2 + 1, 1):
         for y in range(theI.y1, theI.y2 + 1, 1):
             xyTuple = (x, y)
             xyBool = theG.get(xyTuple,)
             theG[xyTuple] = modificationEntry(theI, xyBool)
     return theG
-
-print(modificationGrid(Instruction(testInstruction), testGrid))
-
-"""    
-    #variables
-    theCommand = theList[0]
-    xStart = theList[1][0]
-    yStart = theList[1][1]
-    xEnd = theList[2][0]
-    yEnd = theList[2][1]
-    
-    #modification
-    for x in range(xStart, xEnd + 1, 1):
-        for y in range(yStart, yEnd + 1, 1):
-            theTuple = (x, y)
-            theBool = theGrid.get(theTuple,)
-            theGrid[theTuple] = modificationModificationMicro(theCommand, theBool)
-    return theGrid #output dictionary
-"""
