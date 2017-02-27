@@ -46,5 +46,5 @@ class Grid: #creates the grid with initial values of False
 
         return theGrid
     
-aGrid = Grid(0)
-print(aGrid.grid)
+aGrid = Grid(4).grid
+print(aGrid)
