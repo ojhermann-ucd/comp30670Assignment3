@@ -16,14 +16,15 @@ def gridCheckInt(theList):
 def gridMakeInt(theList):
     return int(theList[0])
 
+#generates the grid
 def gridMakeGrid(theInt):
-    row, column = 0, 0
+    row = 0
+    column = 0
     theGrid = {}
     while row <= theInt:
         while column <= theInt:
-            theGrid[(row, colum)] = False
+            theGrid[(row, column)] = False
             column += 1
         column = 0
-    row += 1
+        row += 1
     return theGrid
-
