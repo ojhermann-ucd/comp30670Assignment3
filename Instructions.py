@@ -38,13 +38,12 @@ class Instruction:
         self.command = theList[0]
         self.start = (int(theList[1]), int(theList[2]))
         self.end = (int(theList[3]), int(theList[4]))
-        self.x1 = self.start[0]
-        self.y1 = self.start[1]
-        self.x2 = self.end[0]
-        self.y2 = self.end[1]
+        self.x1 = int(self.start[0])
+        self.y1 = int(self.start[1])
+        self.x2 = int(self.end[0])
+        self.y2 = int(self.end[1])
 
 
-"""
 thisList = ["switch", 1, 2, 3, 4]
 theInstruction = Instruction(thisList)
 
@@ -57,6 +56,7 @@ print(theInstruction.y1)
 print(theInstruction.x2)
 print(theInstruction.y2)
 
+"""
 #converts the Instruction into a form amenable to modifying the Grid
 def instructionForm(theList): #list input
     command = theList[0]

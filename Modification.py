@@ -1,30 +1,29 @@
+from Grid import *
+from Instructions import *
+
 testGrid = {(0, 0): False, (0, 1): False, (0, 2): False, (1, 0): False, (1, 1): False, (1, 2): False, (2, 0): False, (2, 1): False, (2, 2): False}
 
-testInstruction = ["switch", (1,1), (2, 2)]
+testInstruction = ["switch", 1, 1, 2, 2]
 
-def modificationCommand(theList): #list input
-    return theList[0] #str output
-
-#generate the startTuple
-def modificationTupleStart(theList): #list input
-    return theList[1] #tuple output
-
-#generate the endtTuple
-def modificationTupleEnd(theList): #list input
-    return theList[2] #tuple output
-
-def modificationModificationMicro(theCommand, theBool):
-    if theCommand == "on":
+def modificationEntry(theI, theBool): #Instruction and boolean inputs
+    if theI.command == "on":
         return True
-    if theCommand == "off":
+    if theI.command == "off":
         return False
-    if theCommand == "switch":
-        if theBool == True:
-            return False
-        else:
-            return True
+    if theI.command == "switch":
+        return not theBool
 
-def modificationModification(theList, theGrid): #input list and dictionary
+def modificationGrid(theI, theG): #instuctions and grid
+    for x in range(theI.x1, theI.x2 + 1, 1):
+        for y in range(theI.y1, theI.y2 + 1, 1):
+            xyTuple = (x, y)
+            xyBool = theG.get(xyTuple,)
+            theG[xyTuple] = modificationEntry(theI, xyBool)
+    return theG
+
+print(modificationGrid(Instruction(testInstruction), testGrid))
+
+"""    
     #variables
     theCommand = theList[0]
     xStart = theList[1][0]
@@ -39,3 +38,4 @@ def modificationModification(theList, theGrid): #input list and dictionary
             theBool = theGrid.get(theTuple,)
             theGrid[theTuple] = modificationModificationMicro(theCommand, theBool)
     return theGrid #output dictionary
+"""

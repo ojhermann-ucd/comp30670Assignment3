@@ -25,15 +25,13 @@ def gridCheckIntSize(theInt):
 
 class Grid: #creates the grid with initial values of False
 
-    #in program: use input mechanism to check for integer inputs
-    #in program: use input mechanism to check for positive entries
     def __init__(self, num):
         self.rows = int(num)
         self.columns = int(num)
         self.grid = self.generateGrid()
-        self.size = (int(num) + 1) ** 2 #used in testing
+        self.size = (int(num) + 1) ** 2
 
-    def generateGrid(self): #add value range penalty
+    def generateGrid(self):
         theGrid = {}
         row = 0
         column = 0
