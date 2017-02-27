@@ -2,7 +2,7 @@ import unittest
 import Grid
 import Instructions
 import Modification
-from dis import Instruction
+import Links
 
 class MyTest(unittest.TestCase):
     #Grid
@@ -67,3 +67,8 @@ class MyTest(unittest.TestCase):
         inputGrid = {(0, 0): False, (0, 1): False, (0, 2): False, (1, 0): False, (1, 1): False, (1, 2): False, (2, 0): False, (2, 1): False, (2, 2): False}
         outputGrid = {(0, 0): False, (0, 1): False, (0, 2): False, (1, 0): False, (1, 1): True, (1, 2): True, (2, 0): False, (2, 1): True, (2, 2): True}
         self.assertEqual(Modification.modificationGrid(inputInstruction, inputGrid), outputGrid)
+    
+    #Links
+    def test_validLink(self):
+        self.assertTrue(Links.validLink("http://www.google.com"))
+        self.assertFalse(Links.validLink("thisWillNotWork$$$%$%$%$"))
