@@ -12,6 +12,3 @@ sourceList = Links.createLinkList("LinksSource.txt")
 
 #create gridSizeList
 gridSizeList = Links.createGridSizeList(sourceList)
-
-print(sourceList)
-print(gridSizeList)

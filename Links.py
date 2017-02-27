@@ -1,6 +1,7 @@
 import urllib.request
 from urllib.error import URLError, HTTPError
 from venv import create
+import Grid
 
 #validLink
 def validLink(theLink):
@@ -24,3 +25,13 @@ def createLinkList(linkSource): #input string reference to document
             if validLink(cleanLine):
                 linkList.append(cleanLine)
     return linkList #list
+
+def createGridSizeList(sourceList): #input list
+    gridSizeList = []
+    for source in sourceList:
+        theSource = urllib.request.urlopen(source)
+        with theSource as theSrc:
+            theSrc = theSrc.readline().decode('utf-8')
+            theSrc = Grid.gridInputRemoveLeftWhiteSpace(theSrc)
+            gridSizeList.append(theSrc[0])
+    return gridSizeList
