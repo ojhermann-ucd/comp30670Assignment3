@@ -28,6 +28,10 @@ def instructionValidRange(theList, upperBound):
         theList[i] = str(min(int(theList[i]), upperBound))
     return theList
 
+#makes sure that x1<=x2 and y1<=y2
+def instructionValidOrder(theList):
+    return (int(theList[1]) <= int(theList[3]) and int(theList[2]) <= int(theList[4]))
+
 #converts the Instruction into a form amenable to modifying the Grid
 def instructionForm(theList):
     command = theList[0]
