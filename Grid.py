@@ -43,6 +43,3 @@ class Grid: #creates the grid with initial values of False
             row += 1
 
         return theGrid
-    
-aGrid = Grid(4).grid
-print(aGrid)
