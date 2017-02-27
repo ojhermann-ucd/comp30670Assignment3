@@ -5,10 +5,10 @@ def instructionFormat(str):
     for s in strReplaceList:
         str = str.replace(s[0], s[1])
     str = str.split() #turn it from string to list
-    return str
+    return str #this is now a list
 
 #determines if the Instruction is valid
-def instructionValid(theList):
+def instructionValidTypes(theList):
     if len(theList) != 5: #all valid Instructions are of length 5
         return False
     if theList[0] not in ["off", "on", "switch"]: #all valid instructions begin with one of these Commands
