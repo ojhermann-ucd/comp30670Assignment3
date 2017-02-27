@@ -28,3 +28,9 @@ def instructionValidRange(theList, upperBound):
         theList[i] = str(min(int(theList[i]), upperBound))
     return theList
 
+#converts the Instruction into a form amenable to modifying the Grid
+def instructionForm(theList):
+    command = theList[0]
+    commandStart = (int(theList[1]), int(theList[2]))
+    commandEnd = (int(theList[3]), int(theList[4]))
+    return [command, commandStart, commandEnd]
