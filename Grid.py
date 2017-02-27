@@ -20,6 +20,9 @@ def gridMakeInt(theList): #list input
 def gridCheckIntSign(theInt): #int input
     return (theInt > -1) #boolean output
 
+def gridCheckIntSize(theInt):
+    return (theInt < 10**9)
+
 #generates the grid as a dictionary of (x, y) : boolean key : value pairs
 def gridMakeGrid(theInt): #int input
     row = 0
