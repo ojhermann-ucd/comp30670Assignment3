@@ -23,15 +23,28 @@ def gridCheckIntSign(theInt): #int input
 def gridCheckIntSize(theInt):
     return (theInt < 10**9)
 
-#generates the grid as a dictionary of (x, y) : boolean key : value pairs
-def gridMakeGrid(theInt): #int input
-    row = 0
-    column = 0
-    theGrid = {}
-    while row <= theInt:
-        while column <= theInt:
-            theGrid[(row, column)] = False
-            column += 1
+class Grid: #creates the grid with initial values of False
+
+    #in program: use input mechanism to check for integer inputs
+    #in program: use input mechanism to check for positive entries
+    def __init__(self, num):
+        self.rows = int(num)
+        self.columns = int(num)
+        self.grid = self.generateGrid()
+        self.size = (int(num) + 1) ** 2 #used in testing
+
+    def generateGrid(self): #add value range penalty
+        theGrid = {}
+        row = 0
         column = 0
-        row += 1
-    return theGrid #dict output
+        while row <= self.rows:
+            while column <= self.columns:
+                theGrid[(row, column)] = False
+                column += 1
+            column = 0
+            row += 1
+
+        return theGrid
+    
+aGrid = Grid(0)
+print(aGrid.grid)
