@@ -32,9 +32,35 @@ def instructionValidRange(theList, upperBound):
 def instructionValidOrder(theList):
     return (int(theList[1]) <= int(theList[3]) and int(theList[2]) <= int(theList[4]))
 
+class Instruction:
+    def __init__(self, theList):
+        self.instruction = theList
+        self.command = theList[0]
+        self.start = (int(theList[1]), int(theList[2]))
+        self.end = (int(theList[3]), int(theList[4]))
+        self.x1 = self.start[0]
+        self.y1 = self.start[1]
+        self.x2 = self.end[0]
+        self.y2 = self.end[1]
+
+
+"""
+thisList = ["switch", 1, 2, 3, 4]
+theInstruction = Instruction(thisList)
+
+print(theInstruction.instruction)
+print(theInstruction.command)
+print(theInstruction.start)
+print(theInstruction.end)
+print(theInstruction.x1)
+print(theInstruction.y1)
+print(theInstruction.x2)
+print(theInstruction.y2)
+
 #converts the Instruction into a form amenable to modifying the Grid
-def instructionForm(theList):
+def instructionForm(theList): #list input
     command = theList[0]
     commandStart = (int(theList[1]), int(theList[2]))
     commandEnd = (int(theList[3]), int(theList[4]))
-    return [command, commandStart, commandEnd]
+    return [command, commandStart, commandEnd] #list output
+"""
