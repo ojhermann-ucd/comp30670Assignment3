@@ -2,6 +2,7 @@ import unittest
 import Grid
 import Instructions
 import Modification
+from dis import Instruction
 
 class MyTest(unittest.TestCase):
     #Grid
@@ -59,3 +60,10 @@ class MyTest(unittest.TestCase):
         self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["off", 1, 2, 3, 4]), False), False)
         self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["switch", 1, 2, 3, 4]), True), False)
         self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["switch", 1, 2, 3, 4]), False), True)
+        
+    def test_modificationGrid(self):
+        instructionList = ["switch", 1, 1, 2, 2]
+        inputInstruction = Instructions.Instruction(instructionList)
+        inputGrid = {(0, 0): False, (0, 1): False, (0, 2): False, (1, 0): False, (1, 1): False, (1, 2): False, (2, 0): False, (2, 1): False, (2, 2): False}
+        outputGrid = {(0, 0): False, (0, 1): False, (0, 2): False, (1, 0): False, (1, 1): True, (1, 2): True, (2, 0): False, (2, 1): True, (2, 2): True}
+        self.assertEqual(Modification.modificationGrid(inputInstruction, inputGrid), outputGrid)
