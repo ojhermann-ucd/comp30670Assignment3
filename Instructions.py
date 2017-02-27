@@ -1,10 +1,3 @@
-str1 = "turn off 660,55 through 986,197"
-str2 = "turn on 660,55 through 986,197"
-str3 = "switch 660,55 through 986,197"
-str4 = "switch 660,55 through 986,197"
-str5 = "switch 660,55 through 986,-1000"
-strList = [str1, str2, str3, str4, str5]
-
 #puts the Instruction into the desired format
 def instructionFormat(str):
     #replace
@@ -28,8 +21,10 @@ def instructionValid(theList):
             return False
     return True
 
-for s in strList:
-    print(s)
-    s = instructionFormat(s)
-    print(s)
-    print(instructionValid(s))
+#makes sure the integer values are within acceptable ranges
+def instructionValidRange(theList, upperBound):
+    for i in range(1, 5, 1):
+        theList[i] = str(max(0, int(theList[i])))
+        theList[i] = str(min(int(theList[i]), upperBound))
+    return theList
+
