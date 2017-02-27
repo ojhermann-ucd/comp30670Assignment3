@@ -1,0 +1,61 @@
+import unittest
+import Grid
+import Instructions
+import Modification
+
+class MyTest(unittest.TestCase):
+    #Grid
+    def test_gridInputRemoveLeftWhiteSpace(self):
+        self.assertEqual(Grid.gridInputRemoveLeftWhiteSpace("   4"), ['4'])
+        self.assertEqual(Grid.gridInputRemoveLeftWhiteSpace("   3"), ['3'])
+        self.assertNotEqual(Grid.gridInputRemoveLeftWhiteSpace("   3"), [' 3'])
+        self.assertNotEqual(Grid.gridInputRemoveLeftWhiteSpace("   3"), ['h'])
+        
+    def test_gridCheckLength(self):
+        self.assertTrue(Grid.gridCheckLength([1]))
+        self.assertFalse(Grid.gridCheckLength([1, 2]))
+        
+    def test_generateGrid(self):
+        self.assertEqual(Grid.Grid(1).grid, {(0, 0): False, (0, 1): False, (1, 0): False, (1, 1): False})
+        self.assertNotEqual(Grid.Grid(1).grid, {(0, 0): True, (0, 1): True, (1, 0): False, (1, 1): False})
+    
+    #Instructions
+    def test_instructionFormat(self):
+        self.assertEqual(Instructions.instructionFormat("turn on 25, 28 through 80,200"), ['on', '25', '28', '80', '200'])
+        
+    def test_instructionValidTypes(self):
+        #length
+        self.assertTrue(Instructions.instructionValidTypes(['on', '25', '28', '80', '200'])) #OK
+        self.assertFalse(Instructions.instructionValidTypes(['on', '25', '28', '80', '200', "300"])) #long
+        self.assertFalse(Instructions.instructionValidTypes(['on', '25', '28', '80'])) #short
+        #commands
+        self.assertTrue(Instructions.instructionValidTypes(['on', '25', '28', '80', '200']))
+        self.assertTrue(Instructions.instructionValidTypes(['off', '25', '28', '80', '200']))
+        self.assertTrue(Instructions.instructionValidTypes(['switch', '25', '28', '80', '200']))
+        self.assertFalse(Instructions.instructionValidTypes(['son', '25', '28', '80', '200']))
+        self.assertFalse(Instructions.instructionValidTypes(['On', '25', '28', '80', '200']))
+        self.assertFalse(Instructions.instructionValidTypes([' on', '25', '28', '80', '200']))
+        #generate_integers
+        self.assertFalse(Instructions.instructionValidTypes(['on', 'ted', '28', '80', '200']))
+        self.assertFalse(Instructions.instructionValidTypes(['on', '25', 'fred', '80', '200']))
+        self.assertFalse(Instructions.instructionValidTypes(['on', '25', '28', 'lead', '200']))
+        self.assertFalse(Instructions.instructionValidTypes(['on', '25', '28', '80', 'bed']))
+        
+    def test_Instruction(self):
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).instruction, ["switch", 1, 2, 3, 4])
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).command, "switch")
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).start, (1, 2))
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).end, (3, 4))
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).x1, 1)
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).y1, 2)
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).x2, 3)
+        self.assertEqual(Instructions.Instruction(["switch", 1, 2, 3, 4]).y2, 4)
+        
+    #Modification
+    def test_modificationEntry(self):
+        self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["on", 1, 2, 3, 4]), True), True)
+        self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["off", 1, 2, 3, 4]), True), False)
+        self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["on", 1, 2, 3, 4]), False), True)
+        self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["off", 1, 2, 3, 4]), False), False)
+        self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["switch", 1, 2, 3, 4]), True), False)
+        self.assertEqual(Modification.modificationEntry(Instructions.Instruction(["switch", 1, 2, 3, 4]), False), True)
