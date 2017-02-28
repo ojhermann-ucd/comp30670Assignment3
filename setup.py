@@ -8,5 +8,5 @@ setup(
     author = "Otto Hermann",
     author_email = "otto.hermann@ucdconnect.ie",
     url="www.haha-no-i-do-not-have-one.org",
-    packages = ['comp30670Assignment3']
+    packages = ['comp30670Assignment3 master']
     )
