@@ -1,6 +1,10 @@
+import urllib.request
+from urllib.error import URLError, HTTPError
+
 #turns input into a list after removing leading whitespace
 def gridInputRemoveLeftWhiteSpace(str): #string input
     str = str.lstrip()
+    str = str.lstrip('b')
     str = str.split() 
     return str #returns a list
 
@@ -10,7 +14,11 @@ def gridCheckLength(theList): #list input
 
 #checks if the entry is a number
 def gridCheckInt(theList): #list input
-    return isinstance(int(theList[0]), int) #boolean output
+    try:
+        theInt = int(theList[0])
+        return isinstance(theInt, int) #boolean output
+    except ValueError:
+        return False
 
 #generates the integer
 def gridMakeInt(theList): #list input
@@ -22,6 +30,20 @@ def gridCheckIntSign(theInt): #int input
 
 def gridCheckIntSize(theInt):
     return (theInt < 10**9)
+
+def gridCreateSizeList(sourceList): #input list
+    gridSizeList = []
+    for source in sourceList:
+        theSource = urllib.request.urlopen(source)
+        with theSource as theSrc:
+            theSrc = theSrc.readline().decode('utf-8')
+            theSrc = gridInputRemoveLeftWhiteSpace(theSrc)
+            #tests
+            if not (gridCheckLength(theSrc) and gridCheckInt(theSrc) and gridCheckIntSign(gridMakeInt(theSrc)) and gridCheckIntSize(gridMakeInt(theSrc))):
+                gridSizeList.append("n/a")
+            else:
+                gridSizeList.append(theSrc[0])
+    return gridSizeList
 
 class Grid: #creates the grid with initial values of False
 

@@ -11,4 +11,7 @@ from urllib.error import URLError, HTTPError
 sourceList = Links.createLinkList("LinksSource.txt")
 
 #create gridSizeList
-gridSizeList = Links.createGridSizeList(sourceList)
+gridSizeList = Grid.gridCreateSizeList(sourceList)
+
+#create grids
+testGrid = Grid.Grid(gridSizeList[0]).grid
