@@ -9,9 +9,27 @@ from urllib.error import URLError, HTTPError
 from itertools import islice
 import io
 import time
+import argparse
+from builtins import str
+
+#argparse stuff
+parser = argparse.ArgumentParser()
+group = parser.add_mutually_exclusive_group()
+
+group.add_argument("-u", "--url", action="store_true")
+group.add_argument("-f", "--file", action="store_true")
+
+parser.add_argument("source", help="url or file")
+args = parser.parse_args()
 
 #create sourceList
-sourceList = Links.createLinkList("LinksSource.txt")
+if args.url:
+    sourceList = []
+    sourceList.append(args.source)
+else:
+    sourceList = Links.createLinkList(str(args.source))
+
+#sourceList = Links.createLinkList("LinksSource.txt")
 
 #create gridSizeList
 gridSizeList = Grid.gridCreateSizeList(sourceList)
