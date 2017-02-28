@@ -8,6 +8,7 @@ import urllib.request
 from urllib.error import URLError, HTTPError
 from itertools import islice
 import io
+import time
 
 #create sourceList
 sourceList = Links.createLinkList("LinksSource.txt")
@@ -15,9 +16,7 @@ sourceList = Links.createLinkList("LinksSource.txt")
 #create gridSizeList
 gridSizeList = Grid.gridCreateSizeList(sourceList)
 
-#create grids
-testGrid = Grid.Grid(gridSizeList[0]).grid
-
+#function for summing the values of the grid
 def sumLED(gridSize, theSource): #int, str
     theGrid = Grid.Grid(gridSize).grid
     theSource = urllib.request.urlopen(theSource)
@@ -35,12 +34,21 @@ def sumLED(gridSize, theSource): #int, str
             else:
                 theLine = Instructions.Instruction(theLine)
                 theGrid = Modification.modificationGrid(theLine, theGrid)
-                gridSum = sum(theGrid.values())
+    gridSum = sum(theGrid.values())
     return gridSum
 
-print(sumLED(int(gridSizeList[0]), sourceList[0]))
+#do it
+count = 0
+for g in gridSizeList:
+    startTime = time.time()
+    if g == "n/a":
+        print(sourceList[count], g)
+    else:
+        print(sourceList[count], sumLED(int(g), sourceList[count]))
+        print(time.time() - startTime)
+    count += 1
 
-
+"""
 #execute instructions
 theUpperBound = int(gridSizeList[0])
 theSource = sourceList[0]
@@ -61,3 +69,4 @@ for line in theSource:
             testGrid = Modification.modificationGrid(theLine, testGrid)
 gridSum = sum(testGrid.values())
 print(gridSum)
+"""
