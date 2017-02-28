@@ -40,10 +40,10 @@ def sumLED(gridSize, theSource): #int, str
 #do it
 count = 0
 for g in gridSizeList:
-    startTime = time.time()
+    #startTime = time.time()
     if g == "n/a":
         print(sourceList[count], g)
     else:
         print(sourceList[count], sumLED(int(g), sourceList[count]))
-        print(time.time() - startTime)
+        #print(time.time() - startTime)
     count += 1
