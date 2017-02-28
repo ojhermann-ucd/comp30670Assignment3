@@ -25,4 +25,3 @@ def createLinkList(linkSource): #input string reference to document
             if validLink(cleanLine):
                 linkList.append(cleanLine)
     return linkList #list
-
