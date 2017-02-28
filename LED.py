@@ -19,17 +19,22 @@ gridSizeList = Grid.gridCreateSizeList(sourceList)
 testGrid = Grid.Grid(gridSizeList[0]).grid
 
 #execute instructions
+theUpperBound = int(gridSizeList[0])
 theSource = sourceList[0]
 theSource = urllib.request.urlopen(theSource)
 for line in theSource:
     theLine = str(line, 'utf-8')
-    print(theLine)
-
-"""
-theSource = theSource.readlines()
-print(type(theSource[1]))
-print(theSource[1])
-theSource[1] = str(theSource[1], 'utf-8')
-print(type(theSource[1]))
-print(theSource[1])
-"""
+    #formatting
+    theLine = Instructions.instructionFormat(theLine)
+    #test
+    if not Instructions.instructionValidTypes(theLine):
+        pass
+    else:
+        theLine = Instructions.instructionValidRange(theLine, theUpperBound)
+        if not Instructions.instructionValidOrder(theLine):
+            pass
+        else:
+            theLine = Instructions.Instruction(theLine)
+            testGrid = Modification.modificationGrid(theLine, testGrid)
+gridSum = sum(testGrid.values())
+print(gridSum)
