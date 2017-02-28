@@ -47,26 +47,3 @@ for g in gridSizeList:
         print(sourceList[count], sumLED(int(g), sourceList[count]))
         print(time.time() - startTime)
     count += 1
-
-"""
-#execute instructions
-theUpperBound = int(gridSizeList[0])
-theSource = sourceList[0]
-theSource = urllib.request.urlopen(theSource)
-for line in theSource:
-    theLine = str(line, 'utf-8')
-    #formatting
-    theLine = Instructions.instructionFormat(theLine)
-    #test
-    if not Instructions.instructionValidTypes(theLine):
-        pass
-    else:
-        theLine = Instructions.instructionValidRange(theLine, theUpperBound)
-        if not Instructions.instructionValidOrder(theLine):
-            pass
-        else:
-            theLine = Instructions.Instruction(theLine)
-            testGrid = Modification.modificationGrid(theLine, testGrid)
-gridSum = sum(testGrid.values())
-print(gridSum)
-"""
