@@ -8,4 +8,6 @@ setup(
     author = "Otto Hermann",
     author_email = "otto.hermann@ucdconnect.ie",
     url="www.haha-no-i-do-not-have-one.org",
+    py_modules = ['Grid', 'Instructions', 'LED', 'Links', 'Modification', 'Test'],
+    data_files = ['LinksSource.txt']
     )
