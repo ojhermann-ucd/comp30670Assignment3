@@ -1,7 +1,6 @@
 import os
 from setuptools import setup, find_packages
 from os import name
-import LED
 
 setup(
     name = "comp30670Assignment3 by Otto Hermann aka 16203034",
