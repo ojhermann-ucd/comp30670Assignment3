@@ -16,23 +16,21 @@ from builtins import str
 parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
 
-group.add_argument("-u", "--url", action="store_true")
-group.add_argument("-f", "--file", action="store_true")
+group.add_argument("-i", "--input", action="store_true")
+#group.add_argument("-f", "--file", action="store_true")
 
-parser.add_argument("source", help="url or file")
+parser.add_argument("source", help="a valid url")
 args = parser.parse_args()
 
-#create sourceList
+"""
 if args.url:
     sourceList = []
     sourceList.append(args.source)
 else:
     sourceList = Links.createLinkList(str(args.source))
+"""
 
 #sourceList = Links.createLinkList("LinksSource.txt")
-
-#create gridSizeList
-gridSizeList = Grid.gridCreateSizeList(sourceList)
 
 #function for summing the values of the grid
 def sumLED(gridSize, theSource): #int, str
@@ -55,13 +53,23 @@ def sumLED(gridSize, theSource): #int, str
     gridSum = sum(theGrid.values())
     return gridSum
 
-#do it
-count = 0
-for g in gridSizeList:
-    #startTime = time.time()
-    if g == "n/a":
-        print(sourceList[count], g)
-    else:
-        print(sourceList[count], sumLED(int(g), sourceList[count]))
-        #print(time.time() - startTime)
-    count += 1
+
+
+#create sourceList
+if Links.validLink(args.source):
+    sourceList = []
+    sourceList.append(args.source)
+    #create gridSizeList
+    gridSizeList = Grid.gridCreateSizeList(sourceList)
+    #do it
+    count = 0
+    for g in gridSizeList:
+        #startTime = time.time()
+        if g == "n/a":
+            print(sourceList[count], g)
+        else:
+            print(sourceList[count], sumLED(int(g), sourceList[count]))
+            #print(time.time() - startTime)
+        count += 1
+else:
+    print("That was not a valid url")
