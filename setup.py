@@ -8,5 +8,4 @@ setup(
     author = "Otto Hermann",
     author_email = "otto.hermann@ucdconnect.ie",
     url="www.haha-no-i-do-not-have-one.org",
-    packages = find_packages(),
     )
