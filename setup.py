@@ -12,6 +12,3 @@ setup(
     py_modules = ['Grid', 'Instructions', 'LED', 'Links', 'Modification', 'Test'],
     data_files = ['LinksSource.txt']
     )
-
-if __name__ == '__main__':
-    LED()
